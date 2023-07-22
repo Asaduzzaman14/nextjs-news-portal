@@ -31,17 +31,16 @@ HomePage.getLayout = function getLayout(page) {
 };
 
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 
   const result = await fetch('http://localhost:5000/news')
 
   const data = await result.json()
-  console.log(data);
+  // console.log(data);
 
   return {
     props: {
       allNews: data
     },
-    revalidate: 2
   }
 }

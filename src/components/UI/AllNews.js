@@ -6,7 +6,7 @@ import {
     CommentOutlined,
     ProfileOutlined,
 } from "@ant-design/icons";
-import { Col, Row } from 'antd';
+import { Card, Col, Row } from 'antd';
 import Link from 'next/link';
 
 const AllNews = ({ allnews }) => {
@@ -20,16 +20,25 @@ const AllNews = ({ allnews }) => {
     return (
         <div>
             <h2>This is all news </h2>
-            {
-                allnews.map((news) => (
-                    <Row key={news.id} >
-                        <Col
+            <Row
+                gutter={{
+                    xs: 8,
+                    sm: 16,
+                    md: 24,
+                    lg: 32,
+                }}>
+                {
+                    allnews.map((news) => (
 
-                            lg={{
-                                span: 8,
-                            }}
+                        <Col
+                            key={news.id}
+                            className="gutter-row"
+                            span={6}
                         >
-                            <Image src={news.image_url} alt='news image' width={200} height={300} />
+                            <Card hoverable cover={
+                                <Image src={news.image_url} alt='news image' width={500} height={300} />
+                            }>
+                            </Card>
                             <h1 style={{ fontSize: "20px" }}>
                                 {news.title}
                             </h1>
@@ -63,8 +72,8 @@ const AllNews = ({ allnews }) => {
                                 </span>
                             </p>
 
-                            <p style={{ fontSize: "20px" }}>
-                                {news.description}
+                            <p style={{ fontSize: "16px" }}>
+                                {news?.description > 100 ? news?.description?.slice(0, 70) + "..." : news?.description}
                             </p>
                             <Link href={`/news/${news.id}`}>
                                 <p
@@ -83,10 +92,10 @@ const AllNews = ({ allnews }) => {
                                 </p>
                             </Link>
                         </Col>
-                    </Row>
-                ))
-            }
-        </div>
+                    ))
+                }
+            </Row>
+        </div >
     );
 };
 
