@@ -28,7 +28,7 @@ const AllNews = ({ allnews }) => {
                     lg: 32,
                 }}>
                 {
-                    allnews.map((news) => (
+                    allnews?.map((news) => (
 
                         <Col
                             key={news.id}
