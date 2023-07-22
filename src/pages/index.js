@@ -30,7 +30,7 @@ const HomePage = ({ allNews }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DynamicBanner />
-      <AllNews allnews={data} />
+      <AllNews allnews={allNews} />
     </>
   );
 };
@@ -43,14 +43,14 @@ HomePage.getLayout = function getLayout(page) {
 
 export const getServerSideProps = async () => {
 
-  const result = await fetch('http://localhost:5000/news')
+  const result = await fetch('http://localhost:3000/api/news')
 
   const data = await result.json()
-  // console.log(data);
+  console.log(data);
 
   return {
     props: {
-      allNews: data
+      allNews: data.data
     },
   }
 }
